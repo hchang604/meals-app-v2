@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "jsx": "react-native",
+    "target": "es2016",
+    "jsx": "preserve",
     "module": "commonjs",
-    "lib": ["es6"],
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -13,9 +12,7 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "skipDefaultLibCheck": true,
-    "skipLibCheck": true,
-    "moduleResolution": "node",
-    "types": ["react-native"]
+    "skipLibCheck": true
   },
   "include": [
     "*.tsx",
