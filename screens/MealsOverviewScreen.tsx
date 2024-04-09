@@ -1,13 +1,7 @@
 import React from 'react';
 import {MEALS} from '../data/dummy-data';
-import {
-  FlatList,
-  ListRenderItemInfo,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
-import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
+import {FlatList, ListRenderItemInfo, StyleSheet, View} from 'react-native';
+import {RouteProp, useRoute} from '@react-navigation/native';
 import {RootStackParamList} from './CategoriesScreen';
 import MealItem from '../components/MealItem';
 import Meal from '../models/meal';
