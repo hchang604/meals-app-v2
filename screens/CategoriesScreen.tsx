@@ -6,9 +6,9 @@ import Category from '../models/category';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {useNavigation} from '@react-navigation/native';
 
-type RootStackParamList = {
+export type RootStackParamList = {
   MealsCategories: undefined;
-  MealsOverview: undefined;
+  MealsOverview: {categoryId: string};
 };
 
 function CategoriesScreen() {
@@ -17,7 +17,7 @@ function CategoriesScreen() {
 
   function renderCategoryItem(itemData: ListRenderItemInfo<Category>) {
     function pressHandler() {
-      navigation.navigate('MealsOverview');
+      navigation.navigate('MealsOverview', {categoryId: itemData.item.id});
     }
 
     return (
