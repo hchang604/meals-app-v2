@@ -12,6 +12,7 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import {RootStackParamList} from '../screens/CategoriesScreen';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import MealDetails from './MealDetails';
 
 type MealItemProps = {
   itemData: ListRenderItemInfo<Meal>;
@@ -39,17 +40,7 @@ function MealItem(props: MealItemProps) {
             />
             <Text style={styles.title}>{props.itemData.item.title}</Text>
           </View>
-          <View style={styles.details}>
-            <Text style={styles.detailItem}>
-              {props.itemData.item.duration}m
-            </Text>
-            <Text style={styles.detailItem}>
-              {props.itemData.item.complexity.toUpperCase()}
-            </Text>
-            <Text style={styles.detailItem}>
-              {props.itemData.item.affordability.toUpperCase()}
-            </Text>
-          </View>
+          <MealDetails itemData={props.itemData.item} />
         </View>
       </Pressable>
     </View>
