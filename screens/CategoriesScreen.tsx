@@ -9,6 +9,7 @@ import {useNavigation} from '@react-navigation/native';
 export type RootStackParamList = {
   MealsCategories: undefined;
   MealsOverview: {categoryId: string};
+  MealDetail: {mealId: string};
 };
 
 function CategoriesScreen() {

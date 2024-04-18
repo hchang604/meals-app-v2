@@ -9,16 +9,27 @@ import {
   Text,
   View,
 } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {RootStackParamList} from '../screens/CategoriesScreen';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 type MealItemProps = {
   itemData: ListRenderItemInfo<Meal>;
 };
 
 function MealItem(props: MealItemProps) {
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
+  function selectMealItemhandler() {
+    navigation.navigate('MealDetail', {mealId: props.itemData.item.id});
+  }
+
   return (
     <View style={styles.mealItem}>
       <Pressable
         android_ripple={{color: '#ccc'}}
+        onPress={selectMealItemhandler}
         style={({pressed}) => [pressed ? styles.buttonPressed : null]}>
         <View>
           <View>
