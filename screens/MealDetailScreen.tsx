@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useLayoutEffect} from 'react';
 import {Image, StyleSheet, Text, View, ScrollView} from 'react-native';
-import {RouteProp, useRoute} from '@react-navigation/native';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {RootStackParamList} from './CategoriesScreen';
+import IconButton from '../components/IconButton';
 import MealDetails from '../components/MealDetails';
 import {MEALS} from '../data/dummy-data';
 
@@ -9,8 +10,27 @@ type MealDetailScreen = RouteProp<RootStackParamList, 'MealDetail'>;
 
 function MealDetailScreen() {
   const route = useRoute<MealDetailScreen>();
+  const navigation = useNavigation();
   const mealId = route.params.mealId;
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+
+  function headerButtonPressHandler() {
+    console.log('pressed');
+  }
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => {
+        return (
+          <IconButton
+            icon="star"
+            color="white"
+            onPress={headerButtonPressHandler}
+          />
+        );
+      },
+    });
+  }, [navigation]);
 
   if (!selectedMeal) {
     return (
@@ -19,7 +39,6 @@ function MealDetailScreen() {
       </View>
     );
   }
-
   return (
     <ScrollView style={styles.rootContainer}>
       <Image style={styles.image} source={{uri: selectedMeal?.imageUrl}} />
