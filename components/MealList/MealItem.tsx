@@ -1,5 +1,5 @@
 import React from 'react';
-import Meal from '../models/meal';
+import Meal from '../../models/meal';
 import {
   Image,
   ListRenderItemInfo,
@@ -10,9 +10,9 @@ import {
   View,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {RootStackParamList} from '../screens/CategoriesScreen';
+import {RootStackParamList} from '../../screens/CategoriesScreen';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import MealDetails from './MealDetails';
+import MealDetails from '../MealDetails';
 
 type MealItemProps = {
   itemData: ListRenderItemInfo<Meal>;
