@@ -1,6 +1,6 @@
 # Meals App
 
-## This simple app contains a repository of different recipes separated by various categories:
+This simple app contains a repository of different recipes separated by various categories:
 
 ## Tools Used
 
