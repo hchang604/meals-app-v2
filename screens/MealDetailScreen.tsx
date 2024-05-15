@@ -1,30 +1,33 @@
-import React, {useCallback, useContext, useLayoutEffect} from 'react';
+import React, {useCallback, useLayoutEffect} from 'react';
 import {Image, StyleSheet, Text, View, ScrollView} from 'react-native';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {RootStackParamList} from './CategoriesScreen';
 import IconButton from '../components/IconButton';
 import MealDetails from '../components/MealDetails';
-import {FavoritesContext} from '../store/context/favorites-context';
 import {MEALS} from '../data/dummy-data';
+import {addFavorite, removeFavorite} from '../store/favoritesSlice';
+import {useAppDispatch, useAppSelector} from '../store/store';
 
 type MealDetailScreen = RouteProp<RootStackParamList, 'MealDetail'>;
 
 function MealDetailScreen() {
   const route = useRoute<MealDetailScreen>();
   const navigation = useNavigation();
-  const favoriteMealsCtx = useContext(FavoritesContext);
   const mealId = route.params.mealId;
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
 
-  const mealIsFavorite = favoriteMealsCtx.ids.includes(mealId);
+  const favoriteMealsIds = useAppSelector((state) => state.favoriteMeals.ids);
+  const dispatch = useAppDispatch();
+
+  const mealIsFavorite = favoriteMealsIds.includes(mealId);
 
   const toggleFavoriteStatus = useCallback(() => {
     if (mealIsFavorite) {
-      favoriteMealsCtx.removeFavorites(mealId);
+      dispatch(removeFavorite({id: mealId}));
     } else {
-      favoriteMealsCtx.addFavorites(mealId);
+      dispatch(addFavorite({id: mealId}));
     }
-  }, [favoriteMealsCtx, mealId, mealIsFavorite]);
+  }, [dispatch, mealId, mealIsFavorite]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
